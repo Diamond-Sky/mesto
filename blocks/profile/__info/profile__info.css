@@ -2,4 +2,5 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 336px;
+    margin-bottom: 25px;
 }

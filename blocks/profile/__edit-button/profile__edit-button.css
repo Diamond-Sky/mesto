@@ -1,8 +1,16 @@
 .profile__edit-button {
-    align-self: flex-end;
+    align-self: center;
     float: right;
     margin-left: 18px;
+    margin-bottom: 10px;
     
     width: 24px;
     height: 24px;
+
+    background-color: #000;
+    border: 1px solid #ffffff;
+    background-image: url(../../../images/Edit-vector.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
 }
