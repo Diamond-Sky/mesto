@@ -9,3 +9,8 @@
     border: 1px solid #ffffff;
     padding: 0;
 }
+
+.profile__add-button:focus {
+    outline: none;
+    
+}

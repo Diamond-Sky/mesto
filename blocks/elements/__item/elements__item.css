@@ -1,0 +1,8 @@
+.elements__item {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: 361px;
+    
+    
+    margin: 0;
+}
