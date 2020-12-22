@@ -1,0 +1,7 @@
+.profile {
+    display: flex;
+    flex-direction: row;
+    height: 120px;
+    align-items: center;
+    
+}

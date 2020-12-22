@@ -1,0 +1,10 @@
+.elements__like {
+    padding: 0;
+    border: none;
+    background-color: white;
+    align-self: flex-end;
+}
+
+.elements__like:focus {
+    outline: none;
+}

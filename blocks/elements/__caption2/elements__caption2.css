@@ -1,0 +1,6 @@
+.elements__caption2 {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 246px;
+}
