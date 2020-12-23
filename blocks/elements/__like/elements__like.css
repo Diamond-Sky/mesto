@@ -1,8 +1,21 @@
 .elements__like {
-    padding: 0;
+    
     border: none;
     background-color: white;
     align-self: flex-end;
+    background-image: url(../../../images/Like-vector.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 22px;
+    height: 20px;
+}
+
+.elements__like:hover {
+    background-image: url(../../../images/Like-hover.svg);
+}
+
+.elements__like:active {
+    background-image: url(../../../images/like-active.svg);
 }
 
 .elements__like:focus {

@@ -22,18 +22,6 @@
                         </div>
                         <button class="profile__add-button"></button>
                     </section>
-
-                    <section class="edit-form">
-                        <div class="popup">
-                            <form action="#" method="POST" class="popup__container">
-                                <h2 class="edit-form__title">Редактировать профиль</h2>
-                                <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="edit-form__firstname">
-                                <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="edit-form__lastname">
-                                <button type="submit" class="edit-form__save">Сохранить</button>
-                            </form>
-                        </div>
-                    </section>
-
                     <section class="elements">
                         <div class="elements__item">
                             <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="elements__image" />
@@ -41,7 +29,7 @@
                                 <div class="elements__caption2">
                                     <p class="elements__name">Карачаевск</p>
                                     <button class="elements__like">
-                                        <img class="elements__icon-heart" src="./images/Like-vector.svg" alt="кнопка в виде сердца"/>
+                                        
                                     </button>
                                 </div>
                             </div>
@@ -52,7 +40,7 @@
                                 <div class="elements__caption2">
                                     <p class="elements__name">Гора Эльбрус</p>
                                     <button class="elements__like">
-                                        <img class="elements__icon-heart"  src="./images/Like-vector.svg" alt="кнопка в виде сердца"/>
+                                        
                                     </button>
                                 </div>
                             </div>
@@ -63,7 +51,7 @@
                                 <div class="elements__caption2">
                                     <p class="elements__name">Домбай</p>
                                     <button class="elements__like">
-                                        <img class="elements__icon-heart"  src="./images/Like-vector.svg" alt="кнопка в виде сердца"/>
+                                        
                                     </button>
                                 </div>
                             </div>
@@ -74,7 +62,7 @@
                                 <div class="elements__caption2">
                                     <p class="elements__name">Гора Эльбрус</p>
                                     <button class="elements__like">
-                                        <img class="elements__icon-heart"  src="./images/Like-vector.svg" alt="кнопка в виде сердца"/>
+                                        
                                     </button>
                                 </div>
                             </div>
@@ -85,7 +73,7 @@
                                 <div class="elements__caption2">
                                     <p class="elements__name">Домбай</p>
                                     <button class="elements__like">
-                                        <img class="elements__icon-heart"  src="./images/Like-vector.svg" alt="кнопка в виде сердца"/>
+                                        
                                     </button>
                                 </div>
                             </div>
@@ -96,7 +84,7 @@
                                 <div class="elements__caption2">
                                     <p class="elements__name">Карачаево-Черкесия</p>
                                     <button class="elements__like">
-                                        <img class="elements__icon-heart" src="./images/Like-vector.svg" alt="кнопка в виде сердца"/>
+                                        
                                     </button>
                                 </div>
                             </div>
@@ -108,5 +96,17 @@
                 </footer>
             </div>
         </div>
+
+        <section class="popup">
+            <form action="#" method="POST" class="popup__container">
+                <span class="popup__close"></span>
+                <h2 class="edit-form__title">Редактировать профиль</h2>
+                <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="edit-form__firstname">
+                <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="edit-form__lastname">
+                <button type="submit" class="edit-form__save">Сохранить</button>
+            </form>
+        </section>
+
+        <script src="./scripts/index.js"></script>
     </body>
 </html>

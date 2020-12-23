@@ -1,13 +1,19 @@
 .profile__add-button {
-    width: 150px;
-    height: 50px;
+    width: 152px;
+    height: 52px;
     margin-left: auto;
-    background-image:  url(../../../images/Add-vector.svg);
+    background-image:  url(../../../images/Add-Button.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-color: #000000;
-    border: 1px solid #ffffff;
+    cursor: pointer;
     padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+.profile__add-button:hover {
+    background-image: url(../../../images/Add-Button-hover.svg);
 }
 
 .profile__add-button:focus {

@@ -1,18 +1,24 @@
 .profile__edit-button {
     align-self: center;
-    float: right;
+    
     margin-left: 18px;
     margin-bottom: 10px;
     
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
 
     background-color: #000;
-    border: 1px solid #ffffff;
-    background-image: url(../../../images/Edit-vector.svg);
+    
+    background-image: url(../../../images/Edit-Button.svg);
     background-repeat: no-repeat;
     background-position: center;
     padding: 0;
+    cursor: pointer;
+    border: none;
+}
+
+.profile__edit-button:hover {
+    background-image: url(../../../images/Edit-Button-hover.svg);
 }
 
 .profile__edit-button:focus {
