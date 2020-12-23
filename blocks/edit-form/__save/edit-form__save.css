@@ -1,3 +1,12 @@
 .edit-form__save {
-    align-self: center;
+    width: 358px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border: none;
+    margin-bottom: 37px;
+}
+
+.edit-form__save:focus {
+    outline: none;
 }

@@ -25,10 +25,11 @@
 
                     <section class="edit-form">
                         <div class="popup">
-                            <form class="popup__container">
-                                <input type="text" name="firstname" placeholder="Имя" class="edit-form__firstname">
-                                <input type="text" name="lastname" placeholder="О себе" class="edit-form__lastname">
-                                <button class="edit-form__save"></button>
+                            <form action="#" method="POST" class="popup__container">
+                                <h2 class="edit-form__title">Редактировать профиль</h2>
+                                <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="edit-form__firstname">
+                                <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="edit-form__lastname">
+                                <button type="submit" class="edit-form__save">Сохранить</button>
                             </form>
                         </div>
                     </section>

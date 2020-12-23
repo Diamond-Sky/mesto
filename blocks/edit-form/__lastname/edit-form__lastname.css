@@ -1,3 +1,13 @@
 .edit-form__lastname {
-    
+    width: 358px;
+    height: 27px;
+    border-bottom: 1px solid rgba(0,0,0, 0.2);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 48px;
+}
+
+.edit-form__lastname:focus {
+    outline: none;
 }
