@@ -6,6 +6,12 @@
     border-left: none;
     border-right: none;
     margin-bottom: 48px;
+    
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+
 }
 
 .edit-form__lastname:focus {

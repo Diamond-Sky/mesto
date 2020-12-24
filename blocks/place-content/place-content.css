@@ -1,4 +1,5 @@
 .place-content {
+    box-sizing: border-box;
     outline: auto;
     max-width: 880px;
     width: 100%;
@@ -7,4 +8,11 @@
     align-items: stretch;
     margin: 0 auto;
     position: relative;
+}
+
+@media screen and (max-width: 1000px) {
+    .place-content {
+        margin: 0;
+        padding: 0 6vw;
+    }
 }
