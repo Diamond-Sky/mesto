@@ -1,0 +1,7 @@
+.profile__info-row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 16px;
+    justify-content: flex-start;
+    min-width: 0;
+}

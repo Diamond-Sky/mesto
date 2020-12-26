@@ -11,14 +11,15 @@
 }
 
 .popup__close:hover {
-    background-image: url(../../../images/Close-Icon-hover.svg);
+    opacity: 0.6;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 560px) {
     .popup__close {
         right: 0;
-        top: -26px;
+        top: -40px;
         width: 26px;
         height: 26px;
+        background-size: contain;
     }
 }

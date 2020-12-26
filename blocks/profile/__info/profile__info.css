@@ -1,8 +1,9 @@
 .profile__info {
     display: flex;
     flex-direction: column;
-    position: relative;
-    padding-right: 43px;
+    margin-right: 25px;
+    min-width: 0;
+    
     
 }
 

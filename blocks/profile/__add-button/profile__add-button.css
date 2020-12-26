@@ -1,5 +1,5 @@
 .profile__add-button {
-    width: 152px;
+    min-width: 152px;
     height: 52px;
     margin-left: auto;
     background-image:  url(../../../images/Add-Button.svg);

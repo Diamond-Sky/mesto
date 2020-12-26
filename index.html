@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Mesto</title>
-        <link rel="stylesheet" href="./pages/index.css"/>
+        <link rel="stylesheet" href="./pages/index.css" />
     </head>
     <body class="root">
         <div class="page">
             <div class="place-content">
                 <header class="header">
-                    <img class="header__logo" src="./images/Mesto_logo.svg" alt="Логотип сайта"/>
+                    <img class="header__logo" src="./images/Mesto_logo.svg" alt="Логотип сайта" />
                 </header>
                 <main>
                     <section class="profile">
-                        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватарка"/>
+                        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватарка" />
                         <div class="profile__info">
-                            <h1 class="profile__title">Жак-Ив Кусто</h1>
+                            <div class="profile__info-row">
+                                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                                <button class="profile__edit-button"></button>
+                            </div>
                             <p class="profile__subtitle">Исследователь океана</p>
-                            <button class="profile__edit-button"></button>
                         </div>
-                        
+
                         <button class="profile__add-button"></button>
                     </section>
                     <section class="elements">
@@ -58,14 +60,12 @@
                                 <p class="elements__name">Домбай</p>
                                 <button class="elements__like"></button>
                             </div>
-                       </div>
+                        </div>
                         <div class="elements__item">
                             <img src="./images/karachaevsk2.jpg" alt="Карачаевск" class="elements__image" />
                             <div class="elements__caption">
-                                
                                 <p class="elements__name">Карачаево-Черкесия</p>
                                 <button class="elements__like"></button>
-                            
                             </div>
                         </div>
                     </section>
@@ -80,8 +80,8 @@
             <form class="popup__container">
                 <span class="popup__close"></span>
                 <h2 class="edit-form__title">Редактировать профиль</h2>
-                <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="edit-form__firstname">
-                <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="edit-form__lastname">
+                <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="edit-form__firstname" />
+                <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="edit-form__lastname" />
                 <button type="submit" class="edit-form__save">Сохранить</button>
             </form>
         </section>
