@@ -20,8 +20,8 @@ popupOverlay.addEventListener('click', (Event) => {
 
 //feat: Edit profile input
 let getForm = popupOverlay.querySelector('.popup__container');
-let firstName = popupOverlay.querySelector('.edit-form__firstname');
-let lastName = popupOverlay.querySelector('.edit-form__lastname');
+let firstName = popupOverlay.querySelector('.popup__firstname');
+let lastName = popupOverlay.querySelector('.popup__lastname');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 
