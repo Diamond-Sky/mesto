@@ -1,19 +1,27 @@
-.edit-form__save {
+.popup__save {
     max-width: 358px;
     width: 100%;
     height: 50px;
     background-color: black;
     color: white;
     border: none;
-    
     cursor: pointer;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+
+    color: #FFFFFF;
+
 }
 
-.edit-form__save:hover {
+.popup__save:hover {
     background-color: rgba(0, 0, 0, 0.8);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.edit-form__save:focus {
+.popup__save:focus {
     outline: none;
 }

@@ -3,21 +3,28 @@
     top: -40px;
     right: -40px;
     background-image: url(../../../images/Close-Icon.svg);
+    background-color: #000000;
+    border: none;
     background-repeat: no-repeat;
     width: 40px;
     height: 40px;
     background-position: center;
     cursor: pointer;
+    
 }
 
 .popup__close:hover {
     opacity: 0.6;
 }
 
+.popup__close:focus {
+    outline: none;
+}
+
 @media screen and (max-width: 560px) {
     .popup__close {
         right: 0;
-        top: -40px;
+        
         width: 26px;
         height: 26px;
         background-size: contain;

@@ -35,6 +35,8 @@ getForm.addEventListener('submit', (Event) => {
     togglePopup();
 });
 
+
+/*
 //feat: likeButton Active
 let likeButton = document.querySelectorAll('.elements .elements__like');
 
@@ -43,4 +45,5 @@ likeButton[i].addEventListener('click', () => {
     likeButton[i].classList.toggle('elements__like_active');
 })
 }
+*/
     

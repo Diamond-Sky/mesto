@@ -1,4 +1,4 @@
-.edit-form__firstname {
+.popup__firstname {
     max-width: 358px;
     width: 100%;
     height: 27px;
@@ -9,12 +9,12 @@
     margin-bottom: 30px;
     
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
 
 }
 
-.edit-form__firstname:focus {
+.popup__firstname:focus {
     outline: none;
 }
