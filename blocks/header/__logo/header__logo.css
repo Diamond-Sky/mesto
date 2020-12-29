@@ -1,6 +1,7 @@
 .header__logo {
     width: 142px;
     height: 33px;
+    
 }
 
 .header__logo:hover {
@@ -11,5 +12,6 @@
     .header__logo {
         width: 103px;
         height: 24px;
+        
     }
 }
