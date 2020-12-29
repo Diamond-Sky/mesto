@@ -12,7 +12,9 @@
   <div class="page">
     <div class="place-content">
       <header class="header">
-        <img class="header__logo" src="./images/Mesto_logo.svg" alt="Логотип сайта" />
+        <a href="#">
+          <img class="header__logo" src="./images/Mesto_logo.svg" alt="Логотип сайта" />
+        </a>
       </header>
       <main>
         <section class="profile">
@@ -20,74 +22,72 @@
           <div class="profile__info">
             <div class="profile__info-row">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__edit-button"></button>
+              <button aria-label="Вызов окна редактирования профиля" type="button" class="profile__edit-button"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
-
-          <button class="profile__add-button"></button>
+          <button aria-label="Функция добавления нового пользователя" type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
-          <div class="elements__item">
-            <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="elements__image" />
-            <div class="elements__caption">
-              <h2 class="elements__name">Карачаевск</h2>
-              <button type="button" class="elements__like"></button>
+          <article class="card">
+            <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__image" />
+            <div class="card__caption">
+              <h2 class="card__name">Карачаевск</h2>
+              <button aria-label="Отметить понравившийся вариант" type="button" class="card__like"></button>
             </div>
-          </div>
-          <div class="elements__item">
-            <img src="./images/elbrus.jpg" alt="гора Эльбрус" class="elements__image" />
-            <div class="elements__caption">
-              <h2 class="elements__name">Гора Эльбрус</h2>
-              <button type="button" class="elements__like"></button>
+          </article>
+          <article class="card">
+            <img src="./images/elbrus.jpg" alt="гора Эльбрус" class="card__image" />
+            <div class="card__caption">
+              <h2 class="card__name">Гора Эльбрус</h2>
+              <button aria-label="Отметить понравившийся вариант" type="button" class="card__like"></button>
             </div>
-          </div>
-          <div class="elements__item">
-            <img src="./images/dombay.jpg" alt="Домбай" class="elements__image" />
-            <div class="elements__caption">
-              <h2 class="elements__name">Домбай</h2>
-              <button type="button" class="elements__like"></button>
+          </article>
+          <article class="card">
+            <img src="./images/dombay.jpg" alt="Домбай" class="card__image" />
+            <div class="card__caption">
+              <h2 class="card__name">Домбай</h2>
+              <button aria-label="Отметить понравившийся вариант" type="button" class="card__like"></button>
             </div>
-          </div>
-          <div class="elements__item">
-            <img src="./images/elbrus2.jpg" alt="гора Эльбрус" class="elements__image" />
-            <div class="elements__caption">
-              <h2 class="elements__name">Гора Эльбрус</h2>
-              <button type="button" class="elements__like"></button>
+          </article>
+          <article class="card">
+            <img src="./images/elbrus2.jpg" alt="гора Эльбрус" class="card__image" />
+            <div class="card__caption">
+              <h2 class="card__name">Гора Эльбрус</h2>
+              <button aria-label="Отметить понравившийся вариант" type="button" class="card__like"></button>
             </div>
-          </div>
-          <div class="elements__item">
-            <img src="./images/dombay2.jpg" alt="Домбай" class="elements__image" />
-            <div class="elements__caption">
-              <h2 class="elements__name">Домбай</h2>
-              <button type="button" class="elements__like"></button>
+          </article>
+          <article class="card">
+            <img src="./images/dombay2.jpg" alt="Домбай" class="card__image" />
+            <div class="card__caption">
+              <h2 class="card__name">Домбай</h2>
+              <button aria-label="Отметить понравившийся вариант" type="button" class="card__like"></button>
             </div>
-          </div>
-          <div class="elements__item">
-            <img src="./images/karachaevsk2.jpg" alt="Карачаевск" class="elements__image" />
-            <div class="elements__caption">
-              <h2 class="elements__name">Карачаево-Черкесия</h2>
-              <button type="button" class="elements__like"></button>
+          </article>
+          <article class="card">
+            <img src="./images/karachaevsk2.jpg" alt="Карачаевск" class="card__image" />
+            <div class="card__caption">
+              <h2 class="card__name">Карачаево-Черкесия</h2>
+              <button aria-label="Отметить понравившийся вариант" type="button" class="card__like"></button>
             </div>
-          </div>
+          </article>
         </section>
       </main>
       <footer class="footer">
-        <p class="footer__copyright">&#169; 2020. Дмитрий Богатов</p>
+        <p class="footer__copyright">&copy; 2020. Дмитрий Богатов</p>
       </footer>
+
+      <article class="popup">
+        <form name="edit-form" class="popup__container">
+          <button aria-label="Закрыть форму редактирования профиля" type="button" class="popup__close"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="popup__input popup__input_firstname" />
+          <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="popup__input popup__input_lastname" />
+          <button type="submit" value="Отправить на сервер" class="popup__save">Сохранить</button>
+        </form>
+      </article>
     </div>
   </div>
-
-  <section class="popup">
-    <form name="edit-form" class="popup__container">
-      <button type="button" class="popup__close"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="popup__firstname" />
-      <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="popup__lastname" />
-      <button type="submit" value="Отправить на сервер" class="popup__save">Сохранить</button>
-    </form>
-  </section>
-
   <script src="./scripts/index.js"></script>
 </body>
 

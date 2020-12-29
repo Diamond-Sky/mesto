@@ -1,39 +1,41 @@
-
-//feat: Popup open/close on click
 let popupOpen = document.querySelector('.profile__edit-button');
 let popupOverlay = document.querySelector('.popup');
 let popupClose = popupOverlay.querySelector('.popup__close');
+let getForm = popupOverlay.querySelector('.popup__container');
+let firstName = popupOverlay.querySelector('.popup__input_firstname');
+let lastName = popupOverlay.querySelector('.popup__input_lastname');
+let profileTitle = document.querySelector('.profile__title');
+let profileSubtitle = document.querySelector('.profile__subtitle');
+
 
 let togglePopup = () => {
     popupOverlay.classList.toggle('popup_opened');
 }
 
-popupOpen.addEventListener('click', togglePopup);
+let copyInputValue = () => {
+    firstName.value = profileTitle.textContent;
+    lastName.value = profileSubtitle.textContent;
+    togglePopup();
+}
+
+let handleFormSubmit = (event) => {
+    event.preventDefault();
+    profileTitle.textContent = firstName.value;
+    profileSubtitle.textContent = lastName.value;
+    togglePopup();
+}
+
+popupOpen.addEventListener('click', copyInputValue);
 
 popupClose.addEventListener('click', togglePopup);
 
-popupOverlay.addEventListener('click', (Event) => {
-    if(Event.target === Event.currentTarget) {
+popupOverlay.addEventListener('click', (event) => {
+    if(event.target === event.currentTarget) {
         togglePopup();
     }
 });
 
-//feat: Edit profile input
-let getForm = popupOverlay.querySelector('.popup__container');
-let firstName = popupOverlay.querySelector('.popup__firstname');
-let lastName = popupOverlay.querySelector('.popup__lastname');
-let profileTitle = document.querySelector('.profile__title');
-let profileSubtitle = document.querySelector('.profile__subtitle');
-
-firstName.value = profileTitle.textContent;
-lastName.value = profileSubtitle.textContent;
-
-getForm.addEventListener('submit', (Event) => {
-    Event.preventDefault();
-    profileTitle.textContent = firstName.value;
-    profileSubtitle.textContent = lastName.value;
-    togglePopup();
-});
+getForm.addEventListener('submit', handleFormSubmit);
 
 
 /*
