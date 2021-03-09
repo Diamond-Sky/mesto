@@ -135,11 +135,15 @@ function UnshiftCardItem(name, link) {
 
 //add card from form submit
 
+const cardName = getFormAdd.querySelector('.popup__container_add .popup__input_firstname');
+const linkImage = getFormAdd.querySelector('.popup__container_add .popup__input_lastname');
+
 const handleFormAddSubmit = (event) => {
   event.preventDefault();
-  let cardName = getFormAdd.querySelector('.popup__input_firstname');
-  let linkImage = getFormAdd.querySelector('.popup__input_lastname');
+  
   let unshiftCardItem = new UnshiftCardItem(cardName.value,linkImage.value);
+  cardName.value = '';
+  linkImage.value = '';
   initialCards.unshift(unshiftCardItem);
   cardsCollectionRemove();
   createCards();
@@ -160,6 +164,8 @@ popupCloseEdit.addEventListener('click', () => {
 
 popupCloseAdd.addEventListener('click', () => {
   popupAdd.classList.remove('popup_opened');
+  cardName.value = '';
+  linkImage.value = '';
 });
 
 popupEdit.addEventListener('click', (event) => {
@@ -171,6 +177,8 @@ popupEdit.addEventListener('click', (event) => {
 popupAdd.addEventListener('click', (event) => {
   if(event.target === event.currentTarget) {
     popupAdd.classList.remove('popup_opened');
+    cardName.value = '';
+    linkImage.value = '';
   }
 });
 
