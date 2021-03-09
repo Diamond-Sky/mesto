@@ -7,8 +7,8 @@
     background-color: rgba(0,0,0,0.5);
     display: flex;
     visibility: hidden;
-    transition: 0.8s ease;
     opacity: 0;
+    transition: visibility .8s, opacity .8s ease;
     align-items: center;
     justify-content: center;
     
