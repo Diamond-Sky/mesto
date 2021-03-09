@@ -75,9 +75,9 @@ function cardDelete() {
 
 // add function popup open/close
 
-function togglePopup(elem) {
+/* function togglePopup(elem) {
   elem.classList.toggle('popup_opened');
-};
+}; */
 
 // add createCards function
 
@@ -118,14 +118,14 @@ let profileSubtitle = document.querySelector('.profile__subtitle');
 const copyInputValue = () => {
     firstName.value = profileTitle.textContent;
     lastName.value = profileSubtitle.textContent;
-    togglePopup(popupEdit);
+    popupEdit.classList.add('popup_opened');
 }
 
 const handleFormEditSubmit = (event) => {
     event.preventDefault();
     profileTitle.textContent = firstName.value;
     profileSubtitle.textContent = lastName.value;
-    togglePopup(popupEdit);
+    popupEdit.classList.remove('popup_opened');
 }
 
 function UnshiftCardItem(name, link) {
@@ -143,34 +143,34 @@ const handleFormAddSubmit = (event) => {
   initialCards.unshift(unshiftCardItem);
   cardsCollectionRemove();
   createCards();
-  togglePopup(popupAdd);
+  popupAdd.classList.remove('popup_opened');
 }
 
 // open/close popup
 
 addButton.addEventListener('click', () => {
-  togglePopup(popupAdd);
+  popupAdd.classList.add('popup_opened');
 });
 
 editButton.addEventListener('click', copyInputValue);
 
 popupCloseEdit.addEventListener('click', () => {
-  togglePopup(popupEdit);
+  popupEdit.classList.remove('popup_opened');
 });
 
 popupCloseAdd.addEventListener('click', () => {
-  togglePopup(popupAdd);
+  popupAdd.classList.remove('popup_opened');
 });
 
 popupEdit.addEventListener('click', (event) => {
     if(event.target === event.currentTarget) {
-        togglePopup(popupEdit);
+      popupEdit.classList.remove('popup_opened');
     }
 });
 
 popupAdd.addEventListener('click', (event) => {
   if(event.target === event.currentTarget) {
-      togglePopup(popupAdd);
+    popupAdd.classList.remove('popup_opened');
   }
 });
 
@@ -187,18 +187,18 @@ function openPopupImage(){
       popupPicture.alt = popupImages[i].alt;
       popupPicture.title = popupImages[i].alt;
       imageCaption.textContent = popupImages[i].alt;
-      togglePopup(popupImage);
+      popupImage.classList.add('popup_opened');
     })
   }
 }
 
 
 document.querySelector('.popup__close_image').addEventListener('click',()=>{
-  togglePopup(popupImage);
+  popupImage.classList.remove('popup_opened');
 })
 popupImage.addEventListener('click',(event)=>{
   if(event.target === event.currentTarget) {
-    togglePopup(popupImage);
+    popupImage.classList.remove('popup_opened');
   }
 })
 
