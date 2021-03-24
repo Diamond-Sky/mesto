@@ -39,8 +39,10 @@
         <form name="edit-form" class="popup__container popup__container_edit">
           <button aria-label="Закрыть форму редактирования профиля" type="button" class="popup__close popup__close_edit"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input required autofocus autocomplete="off" value="" type="text" name="firstname" placeholder="Имя" class="popup__input popup__input_firstname" />
-          <input required autocomplete="off" value="" type="text" name="lastname" placeholder="О себе" class="popup__input popup__input_lastname" />
+          <input required autofocus autocomplete="off" value="  " type="text" id="firstname-input" name="firstname" placeholder="Имя" minlength="2" maxlength="40" class="popup__input popup__input_firstname" />
+          <span class="popup__input-error firstname-input-error"></span>
+          <input required autocomplete="off" value="  " type="text"id="lastname-input" name="lastname" placeholder="О себе" minlength="2" maxlength="200" class="popup__input popup__input_lastname" />
+          <span class="popup__input-error lastname-input-error"></span>
           <button type="submit" value="Отправить на сервер" class="popup__save">Сохранить</button>
         </form>
       </article>
@@ -50,8 +52,10 @@
         <form name="add-form" class="popup__container popup__container_add">
           <button aria-label="Закрыть форму добавления карточки" type="button" class="popup__close popup__close_add"></button>
           <h2 class="popup__title">Новое место</h2>
-          <input required autofocus autocomplete="off" value="" type="text" name="name-picture" placeholder="Название" class="popup__input popup__input_name" />
-          <input required autocomplete="off" value="" type="text" name="link-picture" placeholder="Ссылка на картинку" class="popup__input popup__input_link" />
+          <input required autofocus autocomplete="off" value="" type="text" id="name-picture-input" name="name-picture" placeholder="Название" minlength="2" maxlength="30" class="popup__input popup__input_name" />
+          <span class="popup__input-error name-picture-input-error"></span>
+          <input required autocomplete="off" value="" type="url" id="link-picture-input" name="link-picture" placeholder="Ссылка на картинку" class="popup__input popup__input_link" />
+          <span class="popup__input-error link-picture-input-error"></span>
           <button type="submit" value="Отправить на сервер" class="popup__save">Создать</button>
         </form>
       </article>
@@ -81,6 +85,7 @@
 </template>
 
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 

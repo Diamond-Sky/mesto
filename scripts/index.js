@@ -153,6 +153,19 @@ popupCloseEdit.addEventListener('click', () => {
   closePopup(popupEdit);
 });
 
+const page = document.querySelector('.page');
+const closePopupEscape = (parent) => {
+  parent.addEventListener('keydown',(evt) => {
+    if(evt.key === 'Escape'){
+      closePopup(popupEdit);
+      closePopup(popupAdd);
+      getFormAdd.reset();
+    }
+  })
+}
+
+closePopupEscape(page);
+
 popupCloseAdd.addEventListener('click', () => {
   closePopup(popupAdd);
   getFormAdd.reset();
