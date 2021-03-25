@@ -2,14 +2,14 @@
 
   const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-   //inputElement.classList.add('form__input_type_error');
+   inputElement.classList.add('popup__input_type_error');
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__input-error_active');
   };
   
   const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    //inputElement.classList.remove('form__input_type_error');
+    inputElement.classList.remove('popup__input_type_error');
     errorElement.classList.remove('popup__input-error_active');
     errorElement.textContent = '';
   };
@@ -30,7 +30,7 @@
     toggleButtonState(inputList, buttonElement);
     
     inputList.forEach((inputElement) => {
-      checkInputValidity(formElement, inputElement);
+      
       inputElement.addEventListener('input', function () {
         checkInputValidity(formElement, inputElement);
         toggleButtonState(inputList, buttonElement);
@@ -63,5 +63,15 @@
       buttonElement.removeAttribute('disabled', 'disabled');
     }
   }
+enableValidation();
 
-  enableValidation();
+// Не понимаю, как связать значение ключей объекта и функции. Пробовал ставить вместо классов через точечную нотацию объект.ключ
+// Но консоль пишет андефандет 
+
+/* enableValidation({
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}); */

@@ -96,8 +96,6 @@ createCards();
 
 
 
-
-
 const addButton = document.querySelector('.profile__add-button');
 const editButton = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_edit');
@@ -153,18 +151,19 @@ popupCloseEdit.addEventListener('click', () => {
   closePopup(popupEdit);
 });
 
-const page = document.querySelector('.page');
-const closePopupEscape = (parent) => {
-  parent.addEventListener('keydown',(evt) => {
+
+
+const closePopupEscape = () => {
+  document.addEventListener('keydown',(evt) => {
     if(evt.key === 'Escape'){
+      
+      closePopup(popupImage);
       closePopup(popupEdit);
       closePopup(popupAdd);
       getFormAdd.reset();
     }
   })
 }
-
-closePopupEscape(page);
 
 popupCloseAdd.addEventListener('click', () => {
   closePopup(popupAdd);
@@ -208,6 +207,7 @@ popupImage.addEventListener('mousedown',(event)=>{
   }
 })
 
+closePopupEscape();
 getFormEdit.addEventListener('submit', handleFormEditSubmit);
 getFormAdd.addEventListener('submit', handleFormAddSubmit);
 
