@@ -70,6 +70,7 @@ function cardDelete(event) {
   currentCard.remove();
 } 
 
+
 // add function popup open/close
 
 function openPopup(popup) {
@@ -152,11 +153,10 @@ popupCloseEdit.addEventListener('click', () => {
 });
 
 
-
 const closePopupEscape = () => {
   document.addEventListener('keydown',(evt) => {
     if(evt.key === 'Escape'){
-      
+      enableValidation(someObject);
       closePopup(popupImage);
       closePopup(popupEdit);
       closePopup(popupAdd);

@@ -2,17 +2,18 @@
 
   const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-   inputElement.classList.add('popup__input_type_error');
+   inputElement.classList.add(someObject.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input-error_active');
+    errorElement.classList.add(someObject.errorClass);
   };
   
   const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.classList.remove('popup__input-error_active');
+    inputElement.classList.remove(someObject.inputErrorClass);
+    errorElement.classList.remove(someObject.errorClass);
     errorElement.textContent = '';
   };
+
   
   const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
@@ -23,8 +24,8 @@
   };
   
   const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    const buttonElement = formElement.querySelector('.popup__save');
+    const inputList = Array.from(formElement.querySelectorAll(someObject.inputSelector));
+    const buttonElement = formElement.querySelector(someObject.submitButtonSelector);
     
     
     toggleButtonState(inputList, buttonElement);
@@ -39,7 +40,7 @@
   };
   
   const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__container'));
+    const formList = Array.from(document.querySelectorAll(someObject.formSelector));
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', function (evt) {
         evt.preventDefault();
@@ -63,15 +64,14 @@
       buttonElement.removeAttribute('disabled', 'disabled');
     }
   }
-enableValidation();
 
-// Не понимаю, как связать значение ключей объекта и функции. Пробовал ставить вместо классов через точечную нотацию объект.ключ
-// Но консоль пишет андефандет 
 
-/* enableValidation({
+const someObject = {
   formSelector: '.popup__container',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
-}); */
+}
+
+enableValidation(someObject);
