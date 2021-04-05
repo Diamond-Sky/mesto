@@ -1,8 +1,8 @@
 
 
-  const showInputError = (formElement, inputElement, errorMessage) => {
+  /* const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-   inputElement.classList.add(someObject.inputErrorClass);
+    inputElement.classList.add(someObject.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(someObject.errorClass);
   };
@@ -74,4 +74,4 @@ const someObject = {
   errorClass: 'popup__input-error_active'
 }
 
-enableValidation(someObject);
+enableValidation(someObject); */
