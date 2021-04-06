@@ -28,7 +28,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+const cardElements = document.querySelector('.elements');
 // add function popup open/close
 
 export {openPopup};
@@ -50,9 +50,8 @@ function closeByEscape(evt) {
 }
 
 initialCards.forEach((cardItem) => {
-    const nodeCard = new Card(cardItem.name, cardItem.link, 'card-template');
+    const nodeCard = new Card(cardItem, '#card-template');
     const cardElement = nodeCard.generateCard();
-    const cardElements = document.querySelector('.elements');
     renderCard(cardElement, cardElements);
   });
 
@@ -89,12 +88,15 @@ const handleFormEditSubmit = (event) => {
 
 //add card from form submit
 
-const handleFormAddSubmit = (event) => {
-  const cardElements = document.querySelector('.elements');
+const createCardObject = () => {
   const cardName = getFormAdd.querySelector('.popup__input_name');
   const linkImage = getFormAdd.querySelector('.popup__input_link');
+  return {name: cardName.value, link: linkImage.value}
+}
+
+const handleFormAddSubmit = (event) => {
   event.preventDefault();
-  const unshiftCardItem = new Card(cardName.value, linkImage.value, 'card-template');
+  const unshiftCardItem = new Card(createCardObject(), '#card-template');
   renderCard(unshiftCardItem.generateCard(), cardElements);
   closePopup(popupAdd);
 }
