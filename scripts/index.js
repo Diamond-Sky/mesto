@@ -1,6 +1,10 @@
-//upload cards
-import {Card} from '../scripts/Card.js';
-import {FormValidator} from '../scripts/FormValidator.js';
+
+import Card from '../scripts/Card.js';
+import FormValidator from '../scripts/FormValidator.js';
+//import PopupWithForm from '../scripts/PopupWithForm';
+//import PopupWithImage from '../scripts/PopupWithImage';
+import Section from './scripts/Section';
+//import UserInfo from '../scripts/UserInfo';
 
 const initialCards = [
   {
@@ -49,12 +53,27 @@ function closeByEscape(evt) {
   }
 }
 
-initialCards.forEach((cardItem) => {
+
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '#card-template');
+    
+    const cardElement = card.generateCard();
+
+    cardsList.addItem(cardElement);
+    },
+  },
+  cardElements
+);
+cardsList.renderItems();
+
+/* initialCards.forEach((cardItem) => {
     const nodeCard = new Card(cardItem, '#card-template');
     const cardElement = nodeCard.generateCard();
     renderCard(cardElement, cardElements);
   });
-
+ */
 // render card from array
 
 function renderCard(card, container) {

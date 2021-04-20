@@ -1,6 +1,6 @@
 import {openPopup} from '../scripts/index.js';
-export {Card};
- class Card {
+
+export default class Card {
     constructor(cardItem, templateSelector) {
         const {name, link} = cardItem;
         this._text = name;
