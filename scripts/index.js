@@ -1,7 +1,7 @@
 
 import Card from '../scripts/Card.js';
 import FormValidator from '../scripts/FormValidator.js';
-//import PopupWithForm from '../scripts/PopupWithForm';
+import PopupWithForm from '../scripts/PopupWithForm.js';
 import PopupWithImage from '../scripts/PopupWithImage.js';
 import Section from '../scripts/Section.js';
 import Popup from './Popup.js';
@@ -60,8 +60,8 @@ const cardsList = new Section ({
   items: initialCards,
   renderer: (item) => {
     const card = new Card({data: item, handleCardClick: () => {
-      const popupWithImage = new PopupWithImage(popup_image);
-      popupWithImage.open();}
+      const popupWithImage = new PopupWithImage(item, popup_image);
+      popupWithImage.open()}
     } , '#card-template');
     
     const cardElement = card.generateCard();
@@ -113,41 +113,15 @@ const handleFormEditSubmit = (event) => {
 
 //add card from form submit
 
-const createCardObject = () => {
+/* const createCardObject = () => {
   const cardName = getFormAdd.querySelector('.popup__input_name');
   const linkImage = getFormAdd.querySelector('.popup__input_link');
   
   
   return [{name: cardName.value, link: linkImage.value}]
-}
+} */
 
-//Отрисовка одной карточки в верху секции
-const handleFormAddSubmit = (event) => {
-  event.preventDefault();
-  const oneCard = new Section ({
-    items: createCardObject(),
-    renderer: (item) => {
-      const card = new Card({item, handleCardClick: () => {
-        const popupWithImage = new PopupWithImage(popup_image);
-        popupWithImage.open();}
-      } , '#card-template');
-      
-      const cardElement = card.generateCard();
-  
-      oneCard.addItemToUpList(cardElement);
-      },
-    },
-    cardElements
-  );
-  oneCard.renderItems();
-  /* const unshiftCardItem = new Card(createCardObject(), '#card-template');
-  renderCard(unshiftCardItem.generateCard(), cardElements); */
-  //closePopup(popupAdd);
-}
-
-// open/close popup
-
-const popups = document.querySelectorAll('.popup')
+//const popups = document.querySelectorAll('.popup')
 
 /* popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -161,16 +135,38 @@ const popups = document.querySelectorAll('.popup')
 }) */
 
 addButton.addEventListener('click', () => {
-  const popupViewAdd = new Popup(popupAdd);
+  const popupViewAdd = new PopupWithForm({data: popupAdd, handleFormAddSubmit: (event) => {
+    event.preventDefault();
+    const inputValues = popupViewAdd._getInputValues();
+    const oneCard = new Section ({
+    items: inputValues,
+    renderer: (item) => {
+      const card = new Card({
+        data: item,
+        handleCardClick: () => {
+        const popupWithImage = new PopupWithImage(item, popup_image);
+        popupWithImage.open();}
+        },
+        '#card-template'
+      );
+      const cardElement = card.generateCard();
+      oneCard.addItemToUpList(cardElement);
+      },
+    },
+    cardElements
+  );
+  oneCard.renderItems();
+  popupViewAdd.close();
+  }});
   popupViewAdd.open();
-  /* openPopup(popupAdd);
-  getFormAdd.reset(); */
+  const validator = new FormValidator(someObject, popupAdd);
+  validator.toggleButtonState();
 });
 
 editButton.addEventListener('click', copyInputValue);
 
 getFormEdit.addEventListener('submit', handleFormEditSubmit);
-getFormAdd.addEventListener('submit', handleFormAddSubmit);
+//getFormAdd.addEventListener('submit', handleFormAddSubmit);
 
 const someObject = {
   formSelector: '.popup__container',

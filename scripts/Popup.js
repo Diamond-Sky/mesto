@@ -1,12 +1,17 @@
+import PopupWithForm from "./PopupWithForm.js";
+
 export default class Popup {
     constructor(popupSelector) {
+        
         this._popupSelector = popupSelector;
     }
-    open = () => {
+    open () {
+        
         this._popupSelector.classList.add('popup_opened');
         this.setEventListeners();
     }
-    close = () => {
+    close () {
+        
         this._popupSelector.classList.remove('popup_opened');
         this._removeEventListeners();
     }
@@ -16,7 +21,8 @@ export default class Popup {
             this.close();
         }
     }
-    setEventListeners = () => {
+    setEventListeners () {
+        
         this._popupSelector.addEventListener('click', (evt) => {
             if (evt.target.classList.contains('popup_opened')) {
                 this.close();
