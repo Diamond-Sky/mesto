@@ -3,9 +3,7 @@ export default class UserInfo {
         const { profileName, profileCaption } = profileData;
         this._userName = document.querySelector(`.${profileName}`);
         this._profileCaption = document.querySelector(`.${profileCaption}`);
-        this._popupSelector = document.querySelector('.popup_edit');
-        this._inputList = this._popupSelector.querySelectorAll('.popup__input');
-        this._profileInfo = document.querySelectorAll('.profile_info')
+        
     }
     getUserInfo = () => {
         this._formValues = {};

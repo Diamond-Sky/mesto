@@ -91,11 +91,5 @@ formArray.forEach((formElement) => {
   validator.enableValidation();
 });
 
-/* const getFormEdit = document.querySelector('.popup__container_edit');
-const getFormAdd = document.querySelector('.popup__container_add');
-const firstName = popupEdit.querySelector('.popup__input_firstname');
-const lastName = popupEdit.querySelector('.popup__input_lastname');
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle'); */
 
 
