@@ -4,9 +4,8 @@ import FormValidator from '../scripts/FormValidator.js';
 import PopupWithForm from '../scripts/PopupWithForm.js';
 import PopupWithImage from '../scripts/PopupWithImage.js';
 import Section from '../scripts/Section.js';
-import Popup from './Popup.js';
-//import PopupWithImage from './PopupWithImage.js';
-//import UserInfo from '../scripts/UserInfo';
+import UserInfo from './UserInfo.js';
+import PopupEdit from './PopupEdit.js'
 
 const initialCards = [
   {
@@ -35,55 +34,26 @@ const initialCards = [
   }
 ];
 const cardElements = document.querySelector('.elements');
-// add function popup open/close
-
-//export {openPopup};
-/* function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape); 
-}
-
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup);
-  }
-} */
 
 //Отрисовка карточек из исходного массива
-const cardsList = new Section ({
+const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card({data: item, handleCardClick: () => {
-      const popupWithImage = new PopupWithImage(item, popup_image);
-      popupWithImage.open()}
-    } , '#card-template');
-    
+    const card = new Card({
+      data: item, handleCardClick: () => {
+        const popupWithImage = new PopupWithImage(item, popup_image);
+        popupWithImage.open()
+      }
+    }, '#card-template');
+
     const cardElement = card.generateCard();
 
     cardsList.addItem(cardElement);
-    },
   },
+},
   cardElements
 );
 cardsList.renderItems();
-
-/* initialCards.forEach((cardItem) => {
-    const nodeCard = new Card(cardItem, '#card-template');
-    const cardElement = nodeCard.generateCard();
-    renderCard(cardElement, cardElements);
-  });
-
-// render card from array
-
-function renderCard(card, container) {
-  container.prepend(card);
-} */
 
 const addButton = document.querySelector('.profile__add-button');
 const editButton = document.querySelector('.profile__edit-button');
@@ -96,77 +66,59 @@ const lastName = popupEdit.querySelector('.popup__input_lastname');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const popup_image = document.querySelector('.popup_image');
+const profileData = { profileName: 'profile__title', profileCaption: 'profile__subtitle' };
 
-
-const copyInputValue = () => {
-    firstName.value = profileTitle.textContent;
-    lastName.value = profileSubtitle.textContent;
-    openPopup(popupEdit);
-}
-
-const handleFormEditSubmit = (event) => {
-    event.preventDefault();
-    profileTitle.textContent = firstName.value;
-    profileSubtitle.textContent = lastName.value;
-    closePopup(popupEdit);
-}
-
-//add card from form submit
-
-/* const createCardObject = () => {
-  const cardName = getFormAdd.querySelector('.popup__input_name');
-  const linkImage = getFormAdd.querySelector('.popup__input_link');
-  
-  
-  return [{name: cardName.value, link: linkImage.value}]
-} */
-
-//const popups = document.querySelectorAll('.popup')
-
-/* popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
-    }
-    if (evt.target.classList.contains('popup__close')) {
-      closePopup(popup)
-    }
-  })
-}) */
 
 addButton.addEventListener('click', () => {
-  const popupViewAdd = new PopupWithForm({data: popupAdd, handleFormAddSubmit: (event) => {
-    event.preventDefault();
-    const inputValues = popupViewAdd._getInputValues();
-    const oneCard = new Section ({
-    items: inputValues,
-    renderer: (item) => {
-      const card = new Card({
-        data: item,
-        handleCardClick: () => {
-        const popupWithImage = new PopupWithImage(item, popup_image);
-        popupWithImage.open();}
+  const popupViewAdd = new PopupWithForm({
+    data: popupAdd, handleFormAddSubmit: (event) => {
+      event.preventDefault();
+      const inputValues = popupViewAdd._getInputValues();
+      const oneCard = new Section({
+        items: inputValues,
+        renderer: (item) => {
+          const card = new Card({
+            data: item,
+            handleCardClick: () => {
+              const popupWithImage = new PopupWithImage(item, popup_image);
+              popupWithImage.open();
+            }
+          },
+            '#card-template'
+          );
+          const cardElement = card.generateCard();
+          oneCard.addItemToUpList(cardElement);
         },
-        '#card-template'
-      );
-      const cardElement = card.generateCard();
-      oneCard.addItemToUpList(cardElement);
       },
-    },
-    cardElements
-  );
-  oneCard.renderItems();
-  popupViewAdd.close();
-  }});
+        cardElements
+      );
+      oneCard.renderItems();
+      popupViewAdd.close();
+    }
+  });
   popupViewAdd.open();
   const validator = new FormValidator(someObject, popupAdd);
-  validator.toggleButtonState();
+  validator.enableValidation();
 });
 
-editButton.addEventListener('click', copyInputValue);
+editButton.addEventListener('click', () => {
+  const userInfo = new UserInfo(profileData);
+  const validator = new FormValidator(someObject, popupAdd);
 
-getFormEdit.addEventListener('submit', handleFormEditSubmit);
-//getFormAdd.addEventListener('submit', handleFormAddSubmit);
+  const userPopup = new PopupEdit({
+    data: popupEdit, handleFormAddSubmit: (event) => {
+
+      event.preventDefault();
+      const { firstname, lastname } = userPopup._getInputValues();
+      userInfo.setUserInfo(firstname, lastname);
+      userPopup.close();
+
+    }
+  });
+  validator.enableValidation();
+  const userData = userInfo.getUserInfo();
+  userPopup.open(userData);
+});
 
 const someObject = {
   formSelector: '.popup__container',
@@ -178,11 +130,8 @@ const someObject = {
 // Вешаем валидацию форм
 const formArray = Array.from(document.querySelectorAll(someObject.formSelector));
 formArray.forEach((formElement) => {
-  formElement.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-  });
   const validator = new FormValidator(someObject, formElement);
-    validator.enableValidation();
+  validator.enableValidation();
 });
 
 
