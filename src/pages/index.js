@@ -10,6 +10,15 @@ import { addButton, editButton, popupAdd, popupEdit, lastName, profileData, some
 //Импорт стилей в JS
 import './index.css'
 
+function createCard(item) {
+  const card = new Card({
+    item, handleCardClick: () => {
+      popupWithImage.open(item);
+    }
+  }, '#card-template');
+  return card.generateCard()
+}
+
 //Объявление экземпляра класс валидации формы редактирования профиля
 const formEditValidator = new FormValidator(someObject, getFormEdit);
 formEditValidator.enableValidation();
@@ -21,51 +30,48 @@ formAddValidator.enableValidation();
 //Объявление экземпляра класса уравления информацие о пользователе на странице
 const userInfo = new UserInfo(profileData);
 
-//Объявление экземпляра класса popupWithForm для попапа добавления карточки
-const popupAddCard = new PopupWithForm({popupElement: popupAdd, handleFormAddSubmit: () => {
-  debugger;
-  const item = popupAddCard._getInputValues();
-  const newCard = new Card({item, handleCardClick: () => {
-    popupWithImage.open(item);}}, '#card-template');
-    cardsList.addItemUpList(newCard.generateCard());
-  popupAddCard.close();
-}});
-popupAddCard.setEventListeners();
-
-//Объявление экземпляра класса для попапа редактирования профиля
-const popupEditProfile = new PopupWithForm({popupElement: popupEdit, handleFormAddSubmit: () => {
-  userInfo.setUserInfo(firstName, lastName);
-  popupEditProfile.close();
-}})
-popupEditProfile.setEventListeners();
-
-//Объявление экземпляра класса popupWithImage для попапа с картинкой
-const popupWithImage = new PopupWithImage(popupImageContainer);
-popupWithImage.setEventListeners();
-
 //Отрисовка карточек из исходного массива
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card({item, handleCardClick: () => {
-      popupWithImage.open(item);
-    }}, '#card-template');
-    cardsList.addItem(card.generateCard());
+    cardsList.addItem(createCard(item));
   },
 },
   '.elements'
 );
 cardsList.renderItems();
 
+//Объявление экземпляра класса popupWithImage для попапа с картинкой
+const popupWithImage = new PopupWithImage(popupImageContainer);
+popupWithImage.setEventListeners();
+
+//Объявление экземпляра класса для попапа редактирования профиля
+const popupEditProfile = new PopupWithForm({
+  popupElement: popupEdit, handleFormAddSubmit: (data) => {
+    userInfo.setUserInfo(data);
+    popupEditProfile.close();
+  }
+})
+popupEditProfile.setEventListeners();
+
+//Объявление экземпляра класса popupWithForm для попапа добавления карточки
+const popupAddCard = new PopupWithForm({
+  popupElement: popupAdd, handleFormAddSubmit: (data) => {
+    cardsList.addItemUpList(createCard(data));
+    popupAddCard.close();
+    formAddValidator.enableValidation();
+  }
+});
+popupAddCard.setEventListeners();
+
 //Клик по кнопке открытия формы добавления карточки
 addButton.addEventListener('click', () => {
   popupAddCard.open();
 });
 
-
 //Клик по кнопке открытия формы редактирования профиля
 editButton.addEventListener('click', () => {
-  
+
   const userData = userInfo.getUserInfo();
   firstName.value = userData.firstname;
   lastName.value = userData.lastname;

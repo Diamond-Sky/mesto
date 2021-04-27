@@ -6,15 +6,13 @@ export default class UserInfo {
 
     }
     getUserInfo = () => {
-        debugger;
         this._formValues = {};
         this._formValues.firstname = this._userName.textContent;
         this._formValues.lastname = this._profileCaption.textContent;
         return this._formValues;
     }
-    setUserInfo = (firstname, lastname) => {
-        this._userName.textContent = firstname.value;
-        this._profileCaption.textContent = lastname.value;
+    setUserInfo = (data) => {
+        this._userName.textContent = data.firstname;
+        this._profileCaption.textContent = data.lastname;
     }
-
 }
