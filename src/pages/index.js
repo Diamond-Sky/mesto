@@ -59,7 +59,7 @@ const popupAddCard = new PopupWithForm({
   popupElement: popupAdd, handleFormAddSubmit: (data) => {
     cardsList.addItemUpList(createCard(data));
     popupAddCard.close();
-    formAddValidator.enableValidation();
+    formAddValidator.toggleButtonState(); // В чек-листе четко написано, что в классе FormValidator один публичный метод, получается это уже второй, это меня и запутало.
   }
 });
 popupAddCard.setEventListeners();
