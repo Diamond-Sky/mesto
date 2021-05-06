@@ -48,7 +48,7 @@ export default class FormValidator {
     }
   };
 
-  clearInputError = () => {   
+  clearInputError = () => {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
@@ -59,7 +59,7 @@ export default class FormValidator {
       return !inputElement.validity.valid;
     });
   }
-  
+
   toggleButtonState = () => {
     if (this._hasInvalidInput()) {
       this._buttonElement.setAttribute('disabled', 'disabled');

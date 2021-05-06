@@ -1,5 +1,5 @@
-export default class UserInfo { 
-    constructor({profileData, openAddCardHandler, openEditHandler, openAvatarEditHandler}, templateSelector) { 
+export default class UserInfo {
+    constructor({ profileData, openAddCardHandler, openEditHandler, openAvatarEditHandler }, templateSelector) {
         const { profileName, profileCaption, profileAvatar } = profileData;
         this._openAddCardHandler = openAddCardHandler;
         this._openEditHandler = openEditHandler;
@@ -23,26 +23,26 @@ export default class UserInfo {
         return this._element
     }
 
-    _setEventListeners () {
+    _setEventListeners() {
         this._element.querySelector('.profile__add-button').addEventListener('click', this._openAddCardHandler);
         this._element.querySelector('.profile__edit-button').addEventListener('click', () => this._openEditHandler(this._getUserInfo()));
         this._element.querySelector(`.${this._profileAvatar}`).addEventListener('click', this._openAvatarEditHandler);
     }
 
     _getUserInfo = () => {
-        this._formValues = {}; 
-        this._formValues.firstname = this._element.querySelector(`.${this._profileName}`).textContent; 
-        this._formValues.lastname = this._element.querySelector(`.${this._profileCaption}`).textContent; 
-        return this._formValues; 
+        this._formValues = {};
+        this._formValues.firstname = this._element.querySelector(`.${this._profileName}`).textContent;
+        this._formValues.lastname = this._element.querySelector(`.${this._profileCaption}`).textContent;
+        return this._formValues;
     }
 
     setUserInfo = (data) => {
-        this._element.querySelector(`.${this._profileName}`).textContent = data.name; 
+        this._element.querySelector(`.${this._profileName}`).textContent = data.name;
         this._element.querySelector(`.${this._profileCaption}`).textContent = data.about;
     }
 
     setUserAvatar = (data) => {
         this._element.querySelector(`.${this._profileAvatar}`).src = data.avatar;
     }
- 
-} 
+
+}

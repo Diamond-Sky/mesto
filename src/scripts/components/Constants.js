@@ -1,4 +1,4 @@
-export {userData, popupConfirmElement, popupAvatarElement, getFormAvatar, popupAdd, popupEdit, lastName, profileData, someObject, popupImageContainer, getFormEdit, getFormAdd, firstName }
+export { userData, popupConfirmElement, popupAvatarElement, getFormAvatar, popupAdd, popupEdit, lastName, profileData, someObject, popupImageContainer, getFormEdit, getFormAdd, firstName }
 
 const someObject = {
   formSelector: '.popup__container',

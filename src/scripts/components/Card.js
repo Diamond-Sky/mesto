@@ -1,7 +1,7 @@
 
 export default class Card {
-    constructor({item, handleCardClick, handleCardDeleteClick, handleLikeClick}, templateSelector) {
-        const {name, link, owner, likes, _id} = item;
+    constructor({ item, handleCardClick, handleCardDeleteClick, handleLikeClick }, templateSelector) {
+        const { name, link, owner, likes, _id } = item;
         this._item = item;
         this._likes = likes;
         this._id = owner._id;
@@ -23,21 +23,21 @@ export default class Card {
 
     likeActive = (likes) => {
         this._element.querySelector('.card__like_count').textContent = `${likes.length}`;
-        if(this._searchMyLike(likes)) {
+        if (this._searchMyLike(likes)) {
             this._likeStatus = true;
             this._element.querySelector('.card__like').classList.add('card__like_active');
         } else {
             this._likeStatus = false;
-            if(this._element.querySelector('.card__like').classList.contains('card__like_active')) this._element.querySelector('.card__like').classList.remove('card__like_active');
+            if (this._element.querySelector('.card__like').classList.contains('card__like_active')) this._element.querySelector('.card__like').classList.remove('card__like_active');
         }
     }
 
     _searchMyLike(likes) {
         return likes.some(likeData => likeData._id == "ca9d4ba9b78ea4dd281a5f53")
     }
-    
+
     _deleteBtnHidden() {
-        if(this._id !== "ca9d4ba9b78ea4dd281a5f53") {
+        if (this._id !== "ca9d4ba9b78ea4dd281a5f53") {
             this._element.querySelector('.card__delete').style.display = 'none';
         }
     }
