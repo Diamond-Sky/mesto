@@ -14,22 +14,11 @@
     <div class="place-content">
       <header class="header">
         <a href="#" target="_blank" rel="noopener">
-          <img class="header__logo" src="<%=require('./images/Mesto_logo.svg')%>" alt="Логотип сайта" />
+          <img class="header__logo" src="<%=requared('./images/Mesto_logo.svg')%>" alt="Логотип сайта" />
         </a>
       </header>
       <main class="main">
         <section class="profile">
-          <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватарка" />
-          <div class="profile__info">
-            <div class="profile__info-row">
-              <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button aria-label="Вызов окна редактирования профиля" type="button"
-                class="profile__edit-button"></button>
-            </div>
-            <p class="profile__subtitle">Исследователь океана</p>
-          </div>
-          <button aria-label="Функция добавления нового пользователя" type="button"
-            class="profile__add-button"></button>
         </section>
         <section class="elements">
         </section>
@@ -37,61 +26,97 @@
       <footer class="footer">
         <p class="footer__copyright">&copy; 2021. Дмитрий Богатов</p>
       </footer>
-      <!--Popup edit form-->
+
+<!--Popup edit form-->
       <article class="popup popup_edit">
         <form name="edit-form" class="popup__container popup__container_edit">
-          <button aria-label="Закрыть форму редактирования профиля" type="button"
-            class="popup__close popup__close_edit"></button>
+          <button aria-label="Закрыть форму редактирования профиля" type="button" class="popup__close popup__close_edit"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input required autofocus autocomplete="off" value="" type="text" id="firstname-input" name="firstname"
-            placeholder="Имя" minlength="2" maxlength="40" class="popup__input popup__input_firstname" />
+          <input required autofocus autocomplete="off" value="" type="text" id="firstname-input" name="name" placeholder="Имя" minlength="2" maxlength="40" class="popup__input popup__input_firstname" />
           <span class="popup__input-error firstname-input-error"></span>
-          <input required autocomplete="off" value="" type="text" id="lastname-input" name="lastname"
-            placeholder="О себе" minlength="2" maxlength="200" class="popup__input popup__input_lastname" />
+          <input required autocomplete="off" value="" type="text"id="lastname-input" name="about" placeholder="О себе" minlength="2" maxlength="200" class="popup__input popup__input_lastname" />
           <span class="popup__input-error lastname-input-error"></span>
           <button type="submit" value="Отправить на сервер" class="popup__save">Сохранить</button>
         </form>
       </article>
 
-      <!--Popup add cards form-->
+<!--Popup add avatar form-->
+      <article class="popup popup_avatarUpload">
+        <form name="add-form" class="popup__container popup__container_avatarUpload">
+          <button aria-label="Закрыть форму добавления карточки" type="button" class="popup__close popup__close_add"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input required autocomplete="off" value="" type="url" id="link-picture-input" name="avatar" placeholder="Ссылка на картинку" class="popup__input popup__input_link" />
+          <span class="popup__input-error link-picture-input-error"></span>
+          <button type="submit" value="Отправить на сервер" class="popup__save">Сохранить</button>
+        </form>
+      </article>
+
+<!--Popup add cards form-->
       <article class="popup popup_add">
         <form name="add-form" class="popup__container popup__container_add">
-          <button aria-label="Закрыть форму добавления карточки" type="button"
-            class="popup__close popup__close_add"></button>
+          <button aria-label="Закрыть форму добавления карточки" type="button" class="popup__close popup__close_add"></button>
           <h2 class="popup__title">Новое место</h2>
-          <input required autofocus autocomplete="off" value="" type="text" id="name-picture-input" name="name"
-            placeholder="Название" minlength="2" maxlength="30" class="popup__input popup__input_name" />
+          <input required autofocus autocomplete="off" value="" type="text" id="name-picture-input" name="name" placeholder="Название" minlength="2" maxlength="30" class="popup__input popup__input_name" />
           <span class="popup__input-error name-picture-input-error"></span>
-          <input required autocomplete="off" value="" type="url" id="link-picture-input" name="link"
-            placeholder="Ссылка на картинку" class="popup__input popup__input_link" />
+          <input required autocomplete="off" value="" type="url" id="link-picture-input" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_link" />
           <span class="popup__input-error link-picture-input-error"></span>
           <button type="submit" value="Отправить на сервер" class="popup__save">Создать</button>
         </form>
       </article>
+
+<!--Popup delete confirm cards form-->
+      <article class="popup popup_confirm">
+        <form name="confirm-form" class="popup__container popup__container_confirm">
+          <button aria-label="Закрыть форму подтверждения" type="button" class="popup__close popup__close_add"></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button type="submit" value="Отправить на сервер" class="popup__save">Да</button>
+        </form>
+      </article>
+
+<!--Popup view image-->
+      <article class="popup popup_image">
+        <figure class="popup__imageContainer">
+        <button aria-label="Закрыть просмотр изображения" type="button" class="popup__close popup__close_image"></button>
+        <img class="popupImage" src="#" alt="#" title="#"/>
+        <figcaption class="imageCaption"></figcaption>
+        </figure>
+      </article>
     </div>
   </div>
 
-  <!--Popup view image-->
-
-  <article class="popup popup_image">
-    <figure class="popup__imageContainer">
-      <button aria-label="Закрыть просмотр изображения" type="button" class="popup__close popup__close_image"></button>
-      <img class="popupImage" src="#" alt="#" title="#" />
-      <figcaption class="imageCaption"></figcaption>
-    </figure>
-  </article>
-
-  <!--Template elements-->
-  <template id="card-template">
-    <article class="card">
-      <button aria-label="Удалить карточку" type="button" class="card__delete"></button>
-      <img src="#" alt="#" class="card__image" />
-      <div class="card__caption">
-        <h2 class="card__name">Карачаевск</h2>
+  
+<!--Template elements-->
+<template id="card-template">
+  <article class="card">
+    <button aria-label="Удалить карточку" type="button" class="card__delete"></button>
+    <img src="#" alt="#" class="card__image" />
+    <div class="card__caption">
+      <h2 class="card__name">Карачаевск</h2>
+      <div class="card__like_container">
         <button aria-label="Отметить понравившийся вариант" type="button" class="card__like"></button>
+        <span class="card__like_count"></span>
       </div>
-    </article>
-  </template>
+    </div>
+  </article>
+</template>
+
+<!--Template profile-->
+<template id="profile-template">
+  <article class="profile__block">
+    <div class="profile__avatar_container">
+      <img class="profile__avatar_BTN" src="./images/avatarBtn.svg" alt="Кнопка редактирования аватарки" />
+      <img class="profile__avatar" src="" alt="Аватарка" />
+    </div>
+    <div class="profile__info">
+      <div class="profile__info-row">
+        <h1 class="profile__title"></h1>
+        <button aria-label="Вызов окна редактирования профиля" type="button" class="profile__edit-button"></button>
+      </div>
+      <p class="profile__subtitle"></p>
+    </div>
+    <button aria-label="Функция добавления нового пользователя" type="button" class="profile__add-button"></button>
+  </article>
+</template>
 
 
 </body>

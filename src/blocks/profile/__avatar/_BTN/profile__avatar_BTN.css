@@ -1,0 +1,5 @@
+.profile__avatar_BTN {
+    position: absolute;
+    z-index: 1;
+    display: block;
+}

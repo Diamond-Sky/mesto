@@ -5,19 +5,95 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
-import { addButton, editButton, popupAdd, popupEdit, lastName, profileData, someObject, initialCards, popupImageContainer, getFormEdit, getFormAdd, firstName } from '../scripts/components/Constants.js';
+import Api from '../scripts/components/Api.js';
+import PopupConfirm from '../scripts/components/PopupConfirm.js';
+import {userData, popupConfirmElement, popupAvatarElement, getFormAvatar, popupAdd, popupEdit, lastName, profileData, someObject, popupImageContainer, getFormEdit, getFormAdd, firstName } from '../scripts/components/Constants.js';
 
 //Импорт стилей в JS
 import './index.css'
 
+//Подключение API
+const api = new Api(userData);
+
+//Отрисовка профиля с сервера
+api.getUserInfo()
+.then(data => {
+  const profileBlock = new Section({
+    renderer: (item) => {
+      profileBlock.addItem(userInfo.generateProfileBlock(item))
+    },
+    containerSelector: '.profile'
+  })
+  profileBlock.renderItems([data]);
+})
+.catch(api.showErrorMessage);
+
+//Отрисовка карточек с сервера
+api.getCardsInfo()
+.then(data => cardsList.renderItems(data))
+.catch(api.showErrorMessage);
+
+//Экземпляр секшн для отрисовки карточек
+const cardsList = new Section({
+  renderer: (item) => {
+    cardsList.addItem(createCard(item));
+  },
+  containerSelector: '.elements'
+});
+
+//Объявление экземпляра класса подтверждения удаления карточки
+const popupConfirm = new PopupConfirm({popupElement: popupConfirmElement, handleFormSubmit: (cardId, cardDelete) => {
+  api.deleteCard(cardId)
+  .then(() => {
+    cardDelete();
+    popupConfirm.close();
+  })
+  .catch(api.showErrorMessage);
+}});
+popupConfirm.setEventListeners();
+
+//Создание элемента карточки
 function createCard(item) {
-  const card = new Card({
-    item, handleCardClick: () => {
-      popupWithImage.open(item);
+  const card = new Card({item,
+    handleCardClick: () => {
+      popupWithImage.open(item)
+    },
+    handleCardDeleteClick: (cardId, cardDelete) => {
+      popupConfirm.open(cardId, cardDelete);
+    },
+    handleLikeClick: (idCard, likeStatus) => {
+      if(likeStatus) {
+        api.deleteLike(idCard)
+        .then(data => {
+          console.log(data.likes);
+          card.likeActive(data.likes);
+        })
+        .catch(api.showErrorMessage);
+      } else {
+        api.setLike(idCard)
+        .then(data => {
+          card.likeActive(data.likes);
+      })
+        .catch(api.showErrorMessage);
+      }
     }
   }, '#card-template');
-  return card.generateCard()
+  const cardElement = card.generateCard();
+  return cardElement;
 }
+
+//Объявление экземпляра класса формы обновления аватара
+const popupAvatarUpload = new PopupWithForm({popupElement: popupAvatarElement, handleFormAddSubmit: (data) => {
+  popupAvatarUpload.renderLoading(true);
+  api.setAvatar(data)
+  .then(data => userInfo.setUserAvatar(data))
+  .catch(api.showErrorMessage)
+  .finally(() => {
+    popupAvatarUpload.renderLoading(false);
+    popupAvatarUpload.close();
+  })
+}})
+popupAvatarUpload.setEventListeners();
 
 //Объявление экземпляра класс валидации формы редактирования профиля
 const formEditValidator = new FormValidator(someObject, getFormEdit);
@@ -27,56 +103,62 @@ formEditValidator.enableValidation();
 const formAddValidator = new FormValidator(someObject, getFormAdd);
 formAddValidator.enableValidation();
 
-//Объявление экземпляра класса уравления информацие о пользователе на странице
-const userInfo = new UserInfo(profileData);
+//Объявление экземпляра класса валидации формы обновления аватара
+const formAvatarValidator = new FormValidator(someObject, getFormAvatar);
+formAvatarValidator.enableValidation();
 
-//Отрисовка карточек из исходного массива
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    cardsList.addItem(createCard(item));
+//Объявление экземпляра класса уравления информацией о пользователе на странице
+const userInfo = new UserInfo({profileData,
+  openAddCardHandler: () => {
+    formAddValidator.clearInputError();
+    formAddValidator.toggleButtonState();
+    popupAddCard.open();
   },
-},
-  '.elements'
+  openEditHandler: (data) => {
+    firstName.value = data.firstname;
+    lastName.value = data.lastname;
+    formEditValidator.clearInputError();
+    formEditValidator.toggleButtonState();
+    popupEditProfile.open();
+  },
+  openAvatarEditHandler: () => {
+    formAvatarValidator.clearInputError();
+    formAvatarValidator.toggleButtonState();
+    popupAvatarUpload.open();
+  }
+ }, '#profile-template'
 );
-cardsList.renderItems();
+
+//Объявление экземпляра класса для попапа редактирования профиля
+const popupEditProfile = new PopupWithForm({popupElement: popupEdit, handleFormAddSubmit: (data) => {
+  popupEditProfile.renderLoading(true);
+  api.setUserInfo(data)
+  .then(data => userInfo.setUserInfo(data))
+  .catch(api.showErrorMessage)
+  .finally(() => {
+    popupEditProfile.renderLoading(false);
+    popupEditProfile.close();
+  });
+}})
+popupEditProfile.setEventListeners();
 
 //Объявление экземпляра класса popupWithImage для попапа с картинкой
 const popupWithImage = new PopupWithImage(popupImageContainer);
 popupWithImage.setEventListeners();
 
-//Объявление экземпляра класса для попапа редактирования профиля
-const popupEditProfile = new PopupWithForm({
-  popupElement: popupEdit, handleFormAddSubmit: (data) => {
-    userInfo.setUserInfo(data);
-    popupEditProfile.close();
-  }
-})
-popupEditProfile.setEventListeners();
-
 //Объявление экземпляра класса popupWithForm для попапа добавления карточки
-const popupAddCard = new PopupWithForm({
-  popupElement: popupAdd, handleFormAddSubmit: (data) => {
-    cardsList.addItemUpList(createCard(data));
+const popupAddCard = new PopupWithForm({popupElement: popupAdd, handleFormAddSubmit: (data) => {
+  popupAddCard.renderLoading(true);
+  api.addCard(data)
+  .then(data => cardsList.addItemUpList(createCard(data)))
+  .catch(api.showErrorMessage)
+  .finally(() => {
+    popupAddCard.renderLoading(false);
     popupAddCard.close();
-    formAddValidator.toggleButtonState(); // В чек-листе четко написано, что в классе FormValidator один публичный метод, получается это уже второй, это меня и запутало.
-  }
-});
+  });
+  formAddValidator.enableValidation();
+}});
 popupAddCard.setEventListeners();
-
-//Клик по кнопке открытия формы добавления карточки
-addButton.addEventListener('click', () => {
-  popupAddCard.open();
-});
-
-//Клик по кнопке открытия формы редактирования профиля
-editButton.addEventListener('click', () => {
-
-  const userData = userInfo.getUserInfo();
-  firstName.value = userData.firstname;
-  lastName.value = userData.lastname;
-  popupEditProfile.open();
-});
 
 const formArray = Array.from(document.querySelectorAll(someObject.formSelector));
 formArray.forEach((formElement) => {
