@@ -24,7 +24,6 @@ export default class Card {
     }
 
     likeActive = (likes) => {
-        debugger;
         this._element.querySelector('.card__like_count').textContent = `${likes.length}`;
         if(this._searchMyLike(likes)) {
             this._likeStatus = true;
@@ -45,7 +44,6 @@ export default class Card {
     }
 
     _searchMyLike(likes) {
-        debugger;
         return likes.some(likeData => likeData._id == this._myId)
     }
     
@@ -77,7 +75,6 @@ export default class Card {
     }
 
     cardDelete = () => {
-        debugger;
         this._element.remove();
         this._element = null;
     }
