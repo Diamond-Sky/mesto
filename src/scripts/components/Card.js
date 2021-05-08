@@ -1,7 +1,8 @@
+import notFondImage from '../../images/404_error.jpg';
 
 export default class Card {
-    constructor({ item, handleCardClick, handleCardDeleteClick, handleLikeClick }, templateSelector) {
-        const { name, link, owner, likes, _id } = item;
+    constructor({item, myId, handleCardClick, handleCardDeleteClick, handleLikeClick}, templateSelector) {
+        const {name, link, owner, likes, _id} = item;
         this._item = item;
         this._likes = likes;
         this._id = owner._id;
@@ -9,35 +10,47 @@ export default class Card {
         this._text = name;
         this._image = link;
         this._likesCount = this._likes.length;
+        this._myId = myId;
         this._templateSelector = templateSelector;
         this._handleLikeClick = handleLikeClick;
         this._handleCardClick = handleCardClick;
         this._handleCardDeleteClick = handleCardDeleteClick;
         this._likeStatus
+        
     }
-
     _getTemplate() {
         const cardElement = document.querySelector(`${this._templateSelector}`).content.querySelector('.card').cloneNode(true);
         return cardElement;
     }
 
     likeActive = (likes) => {
+        debugger;
         this._element.querySelector('.card__like_count').textContent = `${likes.length}`;
-        if (this._searchMyLike(likes)) {
+        if(this._searchMyLike(likes)) {
             this._likeStatus = true;
             this._element.querySelector('.card__like').classList.add('card__like_active');
         } else {
             this._likeStatus = false;
-            if (this._element.querySelector('.card__like').classList.contains('card__like_active')) this._element.querySelector('.card__like').classList.remove('card__like_active');
+            if(this._element.querySelector('.card__like').classList.contains('card__like_active')) this._element.querySelector('.card__like').classList.remove('card__like_active');
+        }
+    }
+    _chekImageLink() {
+        this._element.querySelector('.card__image').onerror = () => {
+            this._element.querySelector('.card__image').removeEventListener('click', this._handleCardClick);
+            this._element.querySelector('.card__image').src = notFondImage;
+            this._element.querySelector('.card__image').alt = 'Error upload image';
+            this._element.querySelector('.card__name').textContent = 'Not Found 404';
+            this._element.querySelector('.card__like_container').style.display = 'none';
         }
     }
 
     _searchMyLike(likes) {
-        return likes.some(likeData => likeData._id == "ca9d4ba9b78ea4dd281a5f53")
+        debugger;
+        return likes.some(likeData => likeData._id == this._myId)
     }
-
+    
     _deleteBtnHidden() {
-        if (this._id !== "ca9d4ba9b78ea4dd281a5f53") {
+        if(this._id !== this._myId) {
             this._element.querySelector('.card__delete').style.display = 'none';
         }
     }
@@ -52,6 +65,7 @@ export default class Card {
         this.likeActive(this._likes);
         this._deleteBtnHidden();
         this._setEventListeners();
+        this._chekImageLink();
         return this._element;
     }
 
