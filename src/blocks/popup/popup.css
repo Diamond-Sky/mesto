@@ -11,7 +11,7 @@
     transition: visibility .3s, opacity .3s ease;
     align-items: center;
     justify-content: center;
-    
+    z-index: 2000;
 }
 
 @media screen and (max-width: 520px) {
